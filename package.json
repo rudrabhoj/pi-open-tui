@@ -28,6 +28,11 @@
     "test": "node --test tests/settings-command.test.ts tests/footer.test.ts tests/editor.test.ts tests/telemetry.test.ts tests/peek.test.ts",
     "typecheck": "tsc --noEmit"
   },
+  "dependencies": {
+    "diff": "8.0.4",
+    "tree-sitter-wasms": "0.1.13",
+    "web-tree-sitter": "0.25.10"
+  },
   "pi": {
     "extensions": [
       "./extensions/open-tui/index.ts"
@@ -35,8 +40,8 @@
     "image": "https://raw.githubusercontent.com/OldSuns/pi-open-tui/main/assets/preview_dashboard_1.png"
   },
   "peerDependencies": {
-    "@earendil-works/pi-coding-agent": ">=1.0.0",
     "@earendil-works/pi-ai": ">=1.0.0",
+    "@earendil-works/pi-coding-agent": ">=1.0.0",
     "@earendil-works/pi-tui": ">=1.0.0"
   },
   "peerDependenciesMeta": {
@@ -51,9 +56,9 @@
     }
   },
   "devDependencies": {
-    "@earendil-works/pi-coding-agent": "^1.0.0",
-    "@earendil-works/pi-ai": "^1.0.0",
-    "@earendil-works/pi-tui": "^1.0.0",
+    "@earendil-works/pi-ai": "^1.4.0",
+    "@earendil-works/pi-coding-agent": "^1.4.0",
+    "@earendil-works/pi-tui": "^1.4.0",
     "@types/node": "^22.0.0",
     "typescript": "^5.5.0"
   },

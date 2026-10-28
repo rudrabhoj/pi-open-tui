@@ -1,0 +1,3 @@
+// Vendored highlights.scm for toml (source: tree-sitter-grammars/tree-sitter-toml/master/queries/highlights.scm).
+// Stored as a TS module so bundling never needs asset copying.
+export default '; Properties\n;-----------\n\n(bare_key) @type\n\n(quoted_key) @string\n\n(pair\n  (bare_key)) @property\n\n(pair\n  (dotted_key\n    (bare_key) @property))\n\n; Literals\n;---------\n\n(boolean) @boolean\n\n(comment) @comment\n\n(string) @string\n\n[\n  (integer)\n  (float)\n] @number\n\n[\n  (offset_date_time)\n  (local_date_time)\n  (local_date)\n  (local_time)\n] @string.special\n\n; Punctuation\n;------------\n\n[\n  "."\n  ","\n] @punctuation.delimiter\n\n"=" @operator\n\n[\n  "["\n  "]"\n  "[["\n  "]]"\n  "{"\n  "}"\n] @punctuation.bracket\n';

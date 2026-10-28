@@ -7,6 +7,7 @@ import { emptyGitStatus, readGitStatus } from "./git.ts";
 import { readRuntimeInfo } from "./runtime.ts";
 import { SessionLifecycle } from "./session-lifecycle.ts";
 import { registerSettingsCommand } from "./settings-command.ts";
+import { registerRenderers } from "./render/index.ts";
 import { formatTurnTelemetry, TurnTelemetryTracker } from "./telemetry.ts";
 import {
 	createInitialState,
@@ -43,6 +44,7 @@ function isTuiContext(ctx: ExtensionContext): boolean {
 }
 
 export default function (pi: ExtensionAPI) {
+	registerRenderers(pi);
 	const sessionLifecycle = new SessionLifecycle();
 	const state: FooterState = createInitialState();
 	const turnTelemetry = new TurnTelemetryTracker();

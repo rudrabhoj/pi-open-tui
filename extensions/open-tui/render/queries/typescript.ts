@@ -1,0 +1,3 @@
+// Vendored from the official tree-sitter-typescript repo (queries/highlights.scm).
+// MIT licensed. Stored as a TS module so bundling never needs asset copying.
+export default '; Types\n\n(type_identifier) @type\n(predefined_type) @type.builtin\n\n((identifier) @type\n (#match? @type "^[A-Z]"))\n\n(type_arguments\n  "<" @punctuation.bracket\n  ">" @punctuation.bracket)\n\n; Variables\n\n(required_parameter (identifier) @variable.parameter)\n(optional_parameter (identifier) @variable.parameter)\n\n; Keywords\n\n[ "abstract"\n  "declare"\n  "enum"\n  "export"\n  "implements"\n  "interface"\n  "keyof"\n  "namespace"\n  "private"\n  "protected"\n  "public"\n  "type"\n  "readonly"\n  "override"\n  "satisfies"\n] @keyword\n';
