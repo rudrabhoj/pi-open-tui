@@ -25,11 +25,12 @@
     "LICENSE"
   ],
   "scripts": {
-    "test": "node --test tests/settings-command.test.ts tests/footer.test.ts tests/editor.test.ts tests/telemetry.test.ts tests/peek.test.ts",
+    "test": "node --test --test-concurrency=1 tests/settings-command.test.ts tests/footer.test.ts tests/editor.test.ts tests/telemetry.test.ts tests/peek.test.ts tests/treesitter.test.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "diff": "8.0.4",
+    "tree-sitter-bash": "0.25.1",
     "tree-sitter-wasms": "0.1.13",
     "web-tree-sitter": "0.25.10"
   },

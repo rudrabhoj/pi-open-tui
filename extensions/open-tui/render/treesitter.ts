@@ -346,7 +346,12 @@ async function loadLanguageNow(langId: string): Promise<void> {
 			broken.add(langId);
 			return;
 		}
-		const language = await Language.load(path.join(dir, `${spec.wasm}.wasm`));
+		// The bundled Bash 0.20 grammar fails scanner imports and exhausts V8's WASM compiler.
+		// Use the maintained grammar's prebuilt WASM, without loading its native Node binding.
+		const wasmPath = langId === "bash"
+			? require.resolve("tree-sitter-bash/tree-sitter-bash.wasm")
+			: path.join(dir, `${spec.wasm}.wasm`);
+		const language = await Language.load(wasmPath);
 		const query = compileQueryLenient(language, spec.query);
 		if (!query) {
 			broken.add(langId);
