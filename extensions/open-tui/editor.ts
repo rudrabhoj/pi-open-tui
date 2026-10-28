@@ -5,7 +5,7 @@ import {
 	type KeybindingsManager,
 } from "@earendil-works/pi-coding-agent";
 import type { EditorTheme, TuiMouseEvent, TuiMouseEventResult, TUI } from "@earendil-works/pi-tui";
-import { CURSOR_MARKER, truncateToWidth, visibleWidth } from "@earendil-works/pi-tui";
+import { CURSOR_MARKER, renderFakeCursor, truncateToWidth, visibleWidth } from "@earendil-works/pi-tui";
 import type { CursorStyle } from "./config.ts";
 import { findBottomBorderIndex, isEditorBorderLine, stripAnsi } from "./utils.ts";
 
@@ -71,12 +71,11 @@ function findLatestHiddenThinkingLabel(tui: TUI): HiddenThinkingLabelComponent {
 	return latest;
 }
 
+// Pi resolves fake cursor markers to ANSI only after component rendering.
+const [fakeCursorStart, fakeCursorEnd] = renderFakeCursor("\0").split("\0");
+
 function removeSoftwareCursor(line: string, cursorMarker = ""): string {
-	return line.replace(/\x1b\[7m([\s\S]*?)\x1b\[0m/g, (_match, cursor: string) => {
-		const replacement = `${cursorMarker}${cursor}`;
-		cursorMarker = "";
-		return replacement;
-	});
+	return line.replaceAll(fakeCursorStart!, cursorMarker).replaceAll(fakeCursorEnd!, "");
 }
 
 function configureCursor(tui: TUI, cursorStyle: CursorStyle): void {
